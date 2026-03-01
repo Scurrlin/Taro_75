@@ -5,7 +5,7 @@ class Solution:
         def backtrack(s, left, right):
             if len(s) == 2 * n:
                 res.append(s)
-                return
+                return       
             
             if left < n:
                 backtrack(s + '(', left + 1, right)
