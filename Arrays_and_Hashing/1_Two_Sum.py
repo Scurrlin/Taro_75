@@ -2,9 +2,9 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         seen = {}
         for i, num in enumerate(nums):
-            x = target - num
-            if x in seen:
-                return [seen[x], i]
+            num2 = target - num
+            if num2 in seen:
+                return [seen[num2], i]
             seen[num] = i
 
 # Time Complexity: O(n) - We iterate through the input list of size n exactly
