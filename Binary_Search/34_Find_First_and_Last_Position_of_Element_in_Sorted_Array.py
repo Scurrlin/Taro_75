@@ -5,28 +5,28 @@ class Solution:
         l, r = 0, n - 1
 
         while l <= r:
-            m = (l + r)//2
-            if nums[m] < target:
-                l = m + 1
-            elif nums[m] > target:
-                r = m - 1
+            mid = (l + r)//2
+            if nums[mid] < target:
+                l = mid + 1
+            elif nums[mid] > target:
+                r = mid - 1
             else:
-                first = m
-                r = m - 1
+                first = mid
+                r = mid - 1
 
         if first == -1:
             return [-1, -1]
 
         l, r = first, n - 1
         while l <= r:
-            m = (l + r)//2
-            if nums[m] < target:
-                l = m + 1
-            elif nums[m] > target:
-                r = m - 1
+            mid = (l + r)//2
+            if nums[mid] < target:
+                l = mid + 1
+            elif nums[mid] > target:
+                r = mid - 1
             else:
-                last = m
-                l = m + 1
+                last = mid
+                l = mid + 1
 
         return [first, last]
 
