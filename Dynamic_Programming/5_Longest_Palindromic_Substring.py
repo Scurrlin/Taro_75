@@ -4,7 +4,6 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         if not s:
             return ""
-
         t = "^#" + "#".join(s) + "#$"
         n = len(t)
         p = [0] * n

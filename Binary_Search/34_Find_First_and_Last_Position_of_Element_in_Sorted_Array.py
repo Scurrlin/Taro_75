@@ -16,8 +16,8 @@ class Solution:
 
         if first == -1:
             return [-1, -1]
-
         l, r = first, n - 1
+        
         while l <= r:
             mid = (l + r)//2
             if nums[mid] < target:

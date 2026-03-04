@@ -1,6 +1,5 @@
 from typing import Optional, Dict
 
-
 class Node:
     __slots__ = ("key", "val", "freq", "prev", "next")
 
