@@ -11,21 +11,12 @@ class Solution:
             res += 1
         return res
 
-# Time Complexity: O(2^n) – The described brute force approach explores every
-# possible jump combination. In the worst case, from each position, we might be
-# able to jump to almost every subsequent position. This creates a branching
-# factor close to n at each step. Since there are n positions, the total number
-# of possible jump paths grows exponentially, leading to approximately O(n^n)
-# which is simplified by considering that there can only be jumps of maximum
-# size to O(2^n).
+# Time Complexity: O(n) – The algorithm uses a greedy BFS-style approach with
+# two pointers, l and r, representing the current reachable window. In each
+# iteration, it scans from l to r to find the farthest reachable index, then
+# shifts the window forward. Each element in the array is visited at most once
+# across all iterations, so the total work is linear in the size of the input.
 
-# Space Complexity: O(N^N) – The brute force approach described explores every
-# possible jump combination using recursion. In the worst-case, at each index,
-# we could potentially try every possible jump length from 1 up to the maximum
-# jump value at that index. This leads to a branching factor that is at worst
-# proportional to N at each of the N possible positions, resulting in a
-# recursion tree that can grow exponentially. The maximum depth of the recursion
-# tree can be N, and at each level, the number of branches is also proportional
-# to N, meaning that there are potentially N^N branches or call stack frames
-# being held at a time. Therefore, the space complexity for the call stack
-# becomes O(N^N).
+# Space Complexity: O(1) – The algorithm uses only a fixed number of scalar
+# variables (l, r, res, maxJump) regardless of input size. No auxiliary data
+# structures are allocated.

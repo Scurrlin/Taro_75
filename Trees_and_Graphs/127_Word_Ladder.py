@@ -20,21 +20,13 @@ class Solution:
 
         return 0
 
-# Time Complexity: O(M²N) – The time complexity is driven by the breadth-first
-# search (BFS). In the worst case, we might need to explore all possible words.
-# Let N be the number of words in the wordList and M be the length of each word.
-# For each word in the queue (up to N words), we iterate through the entire
-# wordList again to find one-letter-different words, which takes O(N) time.
-# Finding one-letter-different words involves comparing each word which takes
-# O(M) time. Thus, within the BFS loop, finding the neighbors dominates as
-# O(M*N) in the worst case. Since we potentially explore each word, the overall
-# complexity becomes O(M*N * N) or O(M*N²). The average word length (M) can be
-# significant, so O(M * N^2) is a reasonable reflection of what drives the cost.
+# Time Complexity: O(M² * N) – Let N be the number of words in the wordList and
+# M be the length of each word. BFS dequeues up to N words. For each word, we
+# try M positions and 26 letter substitutions. At each position, building the
+# candidate string via slicing costs O(M), and the subsequent set membership
+# check (hashing the string) also costs O(M). This gives O(M * 26 * M) = O(M²)
+# work per word, and O(M² * N) total across all words dequeued.
 
-# Space Complexity: O(N) – The algorithm uses a queue to store words to explore,
-# and in the worst-case scenario, the queue could contain all the words in the
-# word list. The algorithm also modifies the original word list by removing
-# visited words to prevent revisits which means, at worst, we iterate through
-# all words. Let N be the number of words in the word list; therefore, the space
-# complexity is dominated by the queue and the modified word list, leading to
-# O(N) auxiliary space.
+# Space Complexity: O(M * N) – The words set stores up to N strings each of
+# length M, using O(M * N) space. The BFS queue can also hold up to N words of
+# length M. Therefore, total auxiliary space is O(M * N).

@@ -17,20 +17,12 @@ class Solution:
 
         return copy[head]
 
-# Time Complexity: O(n) – The algorithm iterates through the linked list three
-# times. First, it iterates through the original list of n nodes to create a
-# copy of each node and insert it after the original (this step takes O(n)
-# time). Second, it iterates through the augmented list of 2n nodes to assign
-# the random pointers of the copied nodes (this step takes O(n) time because
-# each random pointer assignment is a constant-time operation). Finally, it
-# iterates through the augmented list again to separate the original and copied
-# lists (again O(n) time). Since all steps are linear and sequential, the
-# overall time complexity is O(n) + O(n) + O(n) which simplifies to O(n).
+# Time Complexity: O(n) – The algorithm makes two sequential passes over the
+# linked list of n nodes. The first pass creates a clone of every node and
+# stores the original-to-clone mapping in a hash map, each insertion being O(1).
+# The second pass wires up the next and random pointers on each clone using O(1)
+# hash map lookups. Total work is O(n) + O(n) = O(n).
 
-# Space Complexity: O(1) – The provided solution modifies the original list in
-# place and creates a new list by weaving copies into the original list
-# structure. No auxiliary data structures like hash maps or additional lists are
-# used to store intermediate results or track visited nodes. The operations
-# involve only pointer manipulation and temporary variable assignments, which
-# require a constant amount of extra space regardless of the number of nodes (N)
-# in the original list. Therefore, the auxiliary space complexity is O(1).
+# Space Complexity: O(n) – A hash map (dictionary) is used to store a mapping
+# from every original node to its corresponding clone. With n nodes in the list,
+# the map holds n key-value pairs, so auxiliary space grows linearly with n.

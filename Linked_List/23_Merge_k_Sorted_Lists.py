@@ -36,10 +36,8 @@ class Solution:
 # complexity is O(N log k), where N is the total number of elements and k is the
 # number of lists.
 
-# Space Complexity: O(N) – The algorithm merges lists in pairs, creating new
-# sorted lists. In the worst case, during intermediate merge steps, we may need
-# to hold lists containing close to all N elements (where N is the total number
-# of elements across all k lists) before the final merged list is constructed.
-# The space is used to store the newly merged lists at each step. Therefore, the
-# auxiliary space used is proportional to the total number of elements N,
-# leading to a space complexity of O(N).
+# Space Complexity: O(k) – The mergeTwoLists helper re-links existing nodes
+# in-place without creating new ListNode objects, so no extra space is used per
+# element. The only auxiliary structure is the merged array that holds list head
+# pointers, which contains at most ceil(k/2) entries in any given round.
+# Therefore, auxiliary space is proportional to k, the number of lists.

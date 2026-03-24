@@ -17,11 +17,7 @@ class Solution:
 # to a constant size is logarithmic with base 2, therefore the time complexity
 # is O(log n).
 
-# Space Complexity: O(log N) – The algorithm employs a binary search approach,
-# repeatedly halving the search space. This halving is achieved through
-# recursive calls (or an iterative equivalent using a stack). Each recursive
-# call adds a new frame to the call stack, storing local variables like the
-# middle index. In the worst-case scenario, the recursion depth (or stack size)
-# is proportional to the number of times N can be divided by 2 before reaching
-# 1, which is log2(N). Therefore, the space used by the recursion stack grows
-# logarithmically with the input size N, resulting in O(log N) space complexity.
+# Space Complexity: O(1) – The algorithm is purely iterative, using a while loop
+# with two index variables (l and r) and a computed midpoint. No recursion or
+# auxiliary data structures are used, so space is constant regardless of input
+# size.

@@ -17,18 +17,13 @@ class Solution:
                 for letter in digitMap[d]]
         return combos
 
-# Time Complexity: O(4^n) – Let n be the length of the input digit string. Each
-# digit maps to 3 or 4 letters. In the worst case, all digits map to 4 letters.
-# The brute force approach explores every possible combination. For each digit,
-# we potentially branch into 4 different possibilities. Thus, the number of
-# possible combinations grows exponentially with the input size n. The total
-# number of operations is approximately 4 * 4 * ... * 4 (n times) which is 4^n.
-# Thus, the time complexity is O(4^n).
+# Time Complexity: O(n * 4^n) – Let n be the length of the input digit string.
+# In the worst case every digit maps to 4 letters (digits 7 and 9), producing
+# up to 4^n combinations. The algorithm builds these iteratively: for each
+# digit, it creates new strings by concatenating every existing combo with every
+# letter for that digit. Each string concatenation produces a new string of
+# length up to n, so the total work is O(n * 4^n).
 
-# Space Complexity: O(3^N) – The space complexity is dominated by the list used
-# to store the letter combinations. In the worst-case scenario, where each digit
-# maps to 3 letters (digits 2-6, 8), and the input has N digits, we can have up
-# to 3^N combinations. We also use a temporary string to store current
-# combination during recursion, which takes O(N) space, and the recursion stack
-# can go up to depth N, which takes O(N) space. Since 3^N dominates N, the
-# auxiliary space is O(3^N).
+# Space Complexity: O(n * 4^n) – The algorithm is purely iterative (no recursion
+# stack). Space is dominated by the combos list, which holds up to 4^n strings
+# each of length n. Therefore, the total space for the output is O(n * 4^n).

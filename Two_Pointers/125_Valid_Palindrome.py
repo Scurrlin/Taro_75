@@ -7,16 +7,12 @@ class Solution:
         cleaned = ''.join(chars)
         return cleaned == cleaned[::-1]
 
-# Time Complexity: O(n) – The algorithm iterates through the input string with
-# two pointers, one starting from the beginning and the other from the end,
-# moving towards the middle. In the worst case, each pointer will traverse
-# approximately half of the string's length. Each character comparison and skip
-# operation takes constant time. Therefore, the total number of operations is
-# directly proportional to the length of the string, n, leading to a time
-# complexity of O(n).
+# Time Complexity: O(n) – The algorithm makes one pass through the string of
+# length n to filter alphanumeric characters into a list, then joins them into a
+# cleaned string and creates a reversed copy. Each of these operations is O(n),
+# and since they are sequential the total time is O(n).
 
-# Space Complexity: O(1) – The solution uses a constant amount of extra space.
-# This is because it only requires two pointers (variables) to track the start
-# and end of the phrase, regardless of the input phrase's length. No additional
-# data structures are created that grow with the input size N. Therefore, the
-# auxiliary space complexity remains constant.
+# Space Complexity: O(n) – The algorithm builds a list of up to n characters,
+# joins them into a new string of up to length n, and creates a reversed copy of
+# that string. These three auxiliary data structures each use space proportional
+# to n, so the total auxiliary space is O(n).

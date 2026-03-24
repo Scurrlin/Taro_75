@@ -19,11 +19,7 @@ class Solution:
 # potentially add the current element). Therefore, the overall time complexity
 # is O(n * 2^n).
 
-# Space Complexity: O(2^N) – The algorithm generates all possible subsets of the
-# input set. At each step, we are doubling the number of subsets we store. This
-# means we are creating a new collection of subsets, where each subset
-# potentially has a size of up to N (the number of elements in the input set).
-# Therefore, the space required to store all 2^N subsets is proportional to N *
-# 2^N in the worst case since each subset can have at most N elements. However,
-# when considering space complexity, we usually focus on the number of subsets
-# and ignore the size of each subset, so the space complexity is O(2^N).
+# Space Complexity: O(n * 2^n) – The output contains 2^n subsets, and the
+# average subset size is n/2, so total output storage is O(n * 2^n). Excluding
+# output, auxiliary space is O(n) for the recursion stack (max depth n) and the
+# path list (max length n).

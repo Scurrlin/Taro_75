@@ -34,12 +34,8 @@ class Solution:
 # This leads to a branching factor of 4 for each of the L letters in the word,
 # hence 4^L. Therefore, the total time complexity is approximately M * N * 4^L.
 
-# Space Complexity: O(M*N) – The primary auxiliary space usage comes from the
-# 'visited' set used to keep track of visited cells during the depth-first
-# search, where M is the number of rows and N is the number of columns in the
-# board. In the worst-case scenario, the recursive calls might explore almost
-# all cells on the board, leading to a 'visited' set containing close to all
-# board positions. Therefore the space complexity of the visited set would be
-# O(M*N), since in worst case, we may visit all cells. The recursion depth will
-# also be limited by the size of the board, contributing O(M*N) in the worst
-# case, but this is accounted for in the visited set already.
+# Space Complexity: O(L) – where L is the length of the word. No separate
+# visited set is used; instead, the board is modified in-place by temporarily
+# replacing visited cells with '#' and restoring them after backtracking. The
+# only auxiliary space is the recursion call stack, whose maximum depth equals
+# the word length L (one frame per matched character).

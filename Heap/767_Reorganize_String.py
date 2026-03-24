@@ -18,17 +18,13 @@ class Solution:
 
         return "".join(res)
 
-# Time Complexity: O(n log n) – Counting character frequencies involves
-# iterating through the string of length n, taking O(n) time. Prioritizing
-# characters based on frequency typically uses a heap-based priority queue.
-# Inserting each of the up to n distinct characters into the heap takes O(log n)
-# time, and we do this up to n times resulting in O(n log n) for heap
-# operations. Building the reorganized string involves placing each of the n
-# characters at the correct index. Thus, the dominant operation is the heap
-# operations resulting in a time complexity of O(n log n).
+# Time Complexity: O(n) – Counting character frequencies with Counter takes
+# O(n). Sorting the frequency items operates on at most 26 entries (fixed
+# alphabet), which is O(1). Placing each of the n characters into the result
+# array at alternating indices takes O(n). The dominant cost is the linear scan,
+# so total time is O(n).
 
-# Space Complexity: O(1) – The algorithm uses a character frequency count,
-# which, assuming a fixed character set (e.g., ASCII), requires constant space.
-# The rearranged string is built in-place (or implicitly using a fixed-size
-# output buffer), so it doesn't contribute to auxiliary space. Therefore, the
-# space complexity remains constant regardless of the input string length, N.
+# Space Complexity: O(n) – The algorithm allocates a result list of size n
+# (res = [""] * n) to build the rearranged string. The Counter and sorted list
+# are bounded by the alphabet size (at most 26 entries), contributing O(1).
+# Therefore, auxiliary space is O(n).

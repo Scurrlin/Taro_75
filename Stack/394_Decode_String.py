@@ -30,11 +30,9 @@ class Solution:
 # worst-case scenario where the decoded string is much larger than the input due
 # to high repetition counts. Hence the overall time complexity is O(n*m).
 
-# Space Complexity: O(N) – The space complexity is dominated by the stack, which
-# stores strings and repetition counts. In the worst-case scenario, the input
-# string could consist of nested encoded sequences like
-# 'k[k[k[...k[string]...]]]', where 'k' is a number. The depth of the nesting,
-# and hence the number of elements pushed onto the stack, can be proportional to
-# the length of the input string, N. Therefore, the auxiliary space used by the
-# stack can grow linearly with the input size N. Hence, the space complexity is
-# O(N).
+# Space Complexity: O(S) – where S is the length of the fully decoded output
+# string. The stack stores partially decoded strings and repetition counts. With
+# nested patterns like 'k[k[...]]', the intermediate strings held on the stack
+# and in curr can grow far beyond the input length (e.g., '1000[abc]' has input
+# length ~9 but decoded length 3000). The dominant space cost is therefore
+# proportional to the decoded output size, not the input size.

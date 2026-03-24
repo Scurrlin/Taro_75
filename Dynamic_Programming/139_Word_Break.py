@@ -10,16 +10,12 @@ class Solution:
                     break
         return dp[-1]
 
-# Time Complexity: O(n²) – The algorithm iterates through all possible prefixes
-# of the input string of length n, which takes O(n) time. For each prefix, it
-# iterates through the dictionary to check if a word exists that can extend the
-# prefix to a valid word sequence. In the worst case, the inner loop iterates
-# through the entire dictionary for each prefix, and the dictionary lookup can
-# take O(1) time (assuming a hash set). Additionally, within the outer loop, we
-# also have an inner loop that implicitly checks all possible starting points of
-# the words that make up the string, which will also be O(n) at the most. This
-# results in a nested loop structure where we do work that approximates n * n/2
-# operations, leading to a time complexity of O(n²).
+# Time Complexity: O(n³) – The outer loop runs n times and the inner loop runs
+# up to n times, giving O(n²) iterations. However, each iteration performs
+# s[j:i], which creates a substring of length up to n in O(n) time, and the
+# subsequent set lookup hashes that substring also in O(n) time. Therefore, each
+# iteration costs up to O(n), and the total worst-case time is O(n² * n) =
+# O(n³).
 
 # Space Complexity: O(N) – The algorithm uses a data structure to remember which
 # segments of the phrase are 'buildable'. This can be implemented using a
