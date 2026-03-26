@@ -68,7 +68,7 @@ The 10 above plus 10 more that fill the remaining gaps: advanced versions of the
 | # | Problem | Difficulty | Pattern(s) | Why this problem |
 |---|---------|------------|------------|------------------|
 | 11 | **42. Trapping Rain Water** | Hard | Advanced Two Pointers | The hardest two-pointer problem. Two converging pointers with running maxima -- a technique that appears nowhere else but is an interview favorite. |
-| 12 | **76. Minimum Window Substring** | Hard | Sliding Window, Hash Map | The most demanding sliding window problem. Teaches the "valid window" contraction pattern with frequency maps. |
+| 12 | **124. Binary Tree Maximum Path Sum** | Hard | Tree DFS, Post-Order Recursion | The quintessential binary tree DFS problem. Teaches post-order traversal, combining child results, and tracking a global optimum while returning a different value up the call stack. |
 | 13 | **207. Course Schedule** | Medium | Graph DFS, Topological Sort | Introduces adjacency-list graphs and cycle detection. Directly extends to Course Schedule II (topological ordering). |
 | 14 | **79. Word Search** | Medium | Backtracking, Matrix | Pure backtracking on a grid with in-place visited marking. Covers the recursion + undo pattern missing from the core 10. |
 | 15 | **322. Coin Change** | Medium | DP (unbounded knapsack) | A different DP shape than Climbing Stairs: iterate over items and amounts. Generalizes to Word Break and Longest Increasing Subsequence. |
@@ -78,7 +78,7 @@ The 10 above plus 10 more that fill the remaining gaps: advanced versions of the
 | 19 | **23. Merge k Sorted Lists** | Hard | Divide and Conquer, Linked List | Pairwise merging in O(N log k). Teaches the divide-and-conquer merge pattern that scales to external sort and map-reduce. |
 | 20 | **347. Top K Frequent Elements** | Medium | Heap / Bucket Sort, Hash Map | Covers the "top K" archetype using frequency counting + bucket sort. Transfers to Kth Largest Element and Reorganize String. |
 
-> **Additional patterns covered:** Advanced Two Pointers, Advanced Sliding Window, Topological Sort, Backtracking, Unbounded Knapsack DP, Data Structure Design, Monotonic Deque, BFS, Divide and Conquer, Heap / Bucket Sort.
+> **Additional patterns covered:** Advanced Two Pointers, Tree DFS / Post-Order Recursion, Topological Sort, Backtracking, Unbounded Knapsack DP, Data Structure Design, Monotonic Deque, BFS, Divide and Conquer, Heap / Bucket Sort.
 
 ---
 
@@ -310,40 +310,24 @@ class Solution:
         return volume
 ```
 
-### 76. Minimum Window Substring
+### 124. Binary Tree Maximum Path Sum
 
 ```python
 class Solution:
-    def minWindow(self, s: str, t: str) -> str:
-        m, n = len(s), len(t)
-        if n == 0 or m < n:
-            return ""
-        need, window = {}, {}
+    def maxPathSum(self, root: TreeNode) -> int:
+        res = [root.val]
 
-        for c in t:
-            need[c] = 1 + need.get(c, 0)
-        have, needCount = 0, len(need)
-        best = [-1, -1]
-        bestLen = float("inf")
-        l = 0
+        def dfs(root):
+            if not root:
+                return 0
 
-        for r in range(m):
-            c = s[r]
-            window[c] = 1 + window.get(c, 0)
-            if c in need and window[c] == need[c]:
-                have += 1
+            left = max(dfs(root.left), 0)
+            right = max(dfs(root.right), 0)
+            res[0] = max(res[0], root.val + left + right)
+            return root.val + max(left, right)
 
-            while have == needCount:
-                if r - l + 1 < bestLen:
-                    best = [l, r]
-                    bestLen = r - l + 1
-                window[s[l]] -= 1
-                if s[l] in need and window[s[l]] < need[s[l]]:
-                    have -= 1
-                l += 1
-
-        l, r = best
-        return s[l:r + 1] if bestLen != float("inf") else ""
+        dfs(root)
+        return res[0]
 ```
 
 ### 207. Course Schedule
